@@ -6,9 +6,11 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { existenEmail } = require('../helpers/db-validator');
 
-const { usuarioPost } = require('../controllers/user.controller');
+const { usuarioPost, usuarioGet} = require('../controllers/user.controller');
 
 const router = Router();
+
+router.get("/", usuarioGet);
 
 router.post(
     "/",
