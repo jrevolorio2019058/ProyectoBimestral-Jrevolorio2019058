@@ -57,16 +57,31 @@ const usuariosPut = async (req, res) => {
     const usuario = await Usuario.findOne({ _id: id });
 
     res.status(200).json({
-        msd: 'Actualización de Usuario Exitosamente'
+        msd: 'Actualización de Usuario Exitosamente',
+        usuario
     });
 
 }
+
+const usuariosDelete = async (req, res) => {
+    const { id } = req.params;
+    await Usuario.findByIdAndUpdate(id, { estado: false });
+
+    const usuario = await Usuario.findOne({ _id: id });
+
+    res.status(200).json({
+        msg: 'Usuario Eliminado',
+        usuario
+    });
+}
+
 
 module.exports = {
 
     usuarioPost,
     usuarioGet,
     getUsuarioById,
-    usuariosPut
+    usuariosPut,
+    usuariosDelete
 
 }
