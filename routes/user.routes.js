@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 
-const { existenEmail, existeUsuarioById } = require('../helpers/db-validator');
+const { existenEmail, existeUsuarioById} = require('../helpers/db-validator');
 
 const { usuarioPost, usuarioGet, getUsuarioById, usuariosPut, usuariosDelete} = require('../controllers/user.controller');
 
