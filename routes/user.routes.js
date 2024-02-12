@@ -4,9 +4,9 @@ const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 
-const { existenEmail } = require('../helpers/db-validator');
+const { existenEmail, existeUsuarioById } = require('../helpers/db-validator');
 
-const { usuarioPost, usuarioGet} = require('../controllers/user.controller');
+const { usuarioPost, usuarioGet, getUsuarioById} = require('../controllers/user.controller');
 
 const router = Router();
 
@@ -21,6 +21,15 @@ router.post(
         check("correo").custom(existenEmail),
         validarCampos,
     ], usuarioPost
+);
+
+router.get(
+    "/:id",
+    [
+        check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
+        check("id").custom(existeUsuarioById),
+        validarCampos
+    ], getUsuarioById
 );
 
 module.exports = router;
