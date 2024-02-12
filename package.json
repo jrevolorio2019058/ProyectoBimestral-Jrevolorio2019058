@@ -1,0 +1,12 @@
+{
+  "name": "proyectobimestral-jrevolorio",
+  "version": "1.0.0",
+  "description": "Api Proyecto Bimestral Jrevolorio2019058",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "jrevolorio-2019058",
+  "license": "ISC"
+}
