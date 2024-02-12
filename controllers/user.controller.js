@@ -49,10 +49,24 @@ const getUsuarioById = async (req, res) => {
     });
 }
 
+const usuariosPut = async (req, res) => {
+
+    const { id } = req.params;
+    const { _id,estado, ...resto } = req.body;
+    await Usuario.findByIdAndUpdate(id, resto);
+    const usuario = await Usuario.findOne({ _id: id });
+
+    res.status(200).json({
+        msd: 'Actualización de Usuario Exitosamente'
+    });
+
+}
+
 module.exports = {
 
     usuarioPost,
     usuarioGet,
-    getUsuarioById
+    getUsuarioById,
+    usuariosPut
 
 }
