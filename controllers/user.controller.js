@@ -13,6 +13,7 @@ const usuarioPost = async (req, res) => {
     usuario.password = bcryptsjs.hashSync(password, salt);
 
     await usuario.save();
+    
     res.status(200).json({
 
         usuario
