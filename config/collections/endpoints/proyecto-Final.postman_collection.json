@@ -7,16 +7,16 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "Register",
 			"item": [
 				{
-					"name": "addUser",
+					"name": "register",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"Braulio Echeverria\",\r\n    \"email\": \"braulioecheverria@kinal.edu.gt\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"ADMIN_ROLE\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"Alejandro Lopez\",\r\n    \"email\": \"alopez@kinal.edu.gt\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,7 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/proyectoFinal/v2/user",
+							"raw": "http://localhost:3000/proyectoFinal/v2/user/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -33,32 +33,273 @@
 							"path": [
 								"proyectoFinal",
 								"v2",
-								"user"
+								"user",
+								"register"
 							]
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"oscarmorales@kinal.edu.gt\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/proyectoFinal/v2/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyectoFinal",
+								"v2",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Views",
+					"item": [
+						{
+							"name": "users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzQ3MDcsImV4cCI6MTcwOTU4NTUwN30.9QV8bFyk8syyGuC4L2O2Y0tr-nOcdmCq_CFHegFJDMo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
-					"name": "users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/proyectoFinal/v2/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"proyectoFinal",
-								"v2",
-								"user"
-							]
+					"name": "User",
+					"item": [
+						{
+							"name": "editUser",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzIyMzgsImV4cCI6MTcwOTU4MzAzOH0.gTPYYpSKKj24Rk81UiEigN8MBLbEDPOlaig7adffo7k",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"Oscar Jose Morales\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk1NzQ2NzAsImV4cCI6MTcwOTU4NTQ3MH0.ah_NdjpRdlbZr-vVjlFMRKS4yl_0Zs4HjxMRbW30Wxg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    //Escribir todo en mayusculas ELIMINAR MI PERFIL\r\n    \"confirmationDelete\": \"ELIMINAR MI PERFIL\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "addClient/Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk1Njg4MTcsImV4cCI6MTcwOTU3OTYxN30.A3dyDUuIXLnDUdLwVBnHobM2jQRl_SUyV9js9lQLTbU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"Oscar Morales\",\r\n    \"email\": \"omorales@kinal.edu.gt\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"CLIENT_ROLE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "editClient",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzIzMTMsImV4cCI6MTcwOTU4MzExM30.mrguZA7WR8_-NdsL8ff0vrOJcDP86YhofjQvhLJpUMk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    //\"userName\": \"Jorge Revolorio\"\r\n    //\"email\": \"jrevolorio@kinal.edu.gt\"\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user/65e5d8246e320dde96cdd3b1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user",
+										"65e5d8246e320dde96cdd3b1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteClient",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzIzMTMsImV4cCI6MTcwOTU4MzExM30.mrguZA7WR8_-NdsL8ff0vrOJcDP86YhofjQvhLJpUMk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user/65e5f4efad122b48ef552e8e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user",
+										"65e5f4efad122b48ef552e8e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
