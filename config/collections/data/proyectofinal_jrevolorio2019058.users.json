@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "65e5d8246e320dde96cdd3b1"
+  },
+  "userName": "Jorge Revolorio",
+  "email": "jrevolorio-2019058@kinal.edu.gt",
+  "password": "$2a$10$0SR5x2/2OwHzRy/6ByGCYOZOulyf/rClLw57TqsqR1MSP6l4pxXNe",
+  "role": "CLIENT_ROLE",
+  "state": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e5d8b46e320dde96cdd3b5"
+  },
+  "userName": "Braulio Echeverria",
+  "email": "braulioecheverria@kinal.edu.gt",
+  "password": "$2a$10$nPpbfIF8eqSXIP2IiIZGeuDbCrCuv25IPq2a73aqgLWy3b2HVQuMS",
+  "role": "ADMIN_ROLE",
+  "state": true,
+  "__v": 0
+}]
