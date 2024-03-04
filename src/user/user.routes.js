@@ -11,7 +11,7 @@ import {
     userDelete,
     userGet,
     userPost,
-    userPut
+    userAdminPut
 } from '../user/user.controller.js';
 
 const router = Router();
@@ -44,7 +44,7 @@ router.put(
         check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos
-    ], userPut
+    ], userAdminPut
 );
 
 router.delete(

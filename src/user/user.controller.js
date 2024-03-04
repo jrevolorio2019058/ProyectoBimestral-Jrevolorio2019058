@@ -72,7 +72,7 @@ export const getUserById = async (req, res) => {
     });
 }
 
-export const userPut = async (req, res) => {
+export const userAdminPut = async (req, res) => {
 
     const { id } = req.params;
     const { _id,state, ...resto } = req.body;
