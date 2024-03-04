@@ -2,25 +2,49 @@ import { Router } from 'express';
 
 import { check } from 'express-validator';
 
-import { validarCampos } from "../middlewares/validar-campos.js";
+import { validarCampos, verificacionRolAdmin } from "../middlewares/validar-campos.js";
 
 import { existeUsuarioById, existenEmail } from '../helpers/db-validator.js';
 
 import {
-    getUserById,
+    register,
+    userAdminPut,
+    userClientPut,
     userDelete,
     userGet,
-    userPost,
-    userAdminPut
+    userPost
 } from '../user/user.controller.js';
+
+import { validarJWT } from "../middlewares/validar-jwt.js";
+
+import { tieneRole } from "../middlewares/validar-roles.js";
 
 const router = Router();
 
-router.get("/", userGet);
+router.get("/",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validarCampos
+    ], userGet
+);
+
+router.post(
+    "/register",
+    [
+        check("userName", "Nombre obligatorio").not().isEmpty(),
+        check("password", "Contraseña debe de contener minimo 6 caracteres").isLength({ min: 6, }),
+        check("email", "No es un correo valido").isEmail(),
+        check("email").custom(existenEmail),
+        validarCampos,
+    ], register
+);
 
 router.post(
     "/",
     [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
         check("userName", "Nombre obligatorio").not().isEmpty(),
         check("password", "Contraseña debe de contener minimo 6 caracteres").isLength({ min: 6, }),
         check("email", "No es un correo valido").isEmail(),
@@ -29,18 +53,21 @@ router.post(
     ], userPost
 );
 
-router.get(
-    "/:id",
+router.put(
+    "/",
     [
-        check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
-        check("id").custom(existeUsuarioById),
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
         validarCampos
-    ], getUserById
+    ], userClientPut
 );
 
 router.put(
     "/:id",
     [
+        validarJWT,
+        verificacionRolAdmin,
+        tieneRole('ADMIN_ROLE'),
         check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos
@@ -50,6 +77,8 @@ router.put(
 router.delete(
     "/:id",
     [
+        validarJWT,
+        verificacionRolAdmin,
         check("id", "El id no es un formato válido de MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos

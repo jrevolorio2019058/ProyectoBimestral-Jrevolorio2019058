@@ -2,6 +2,26 @@ import bcryptjs from 'bcryptjs';
 
 import User from './user.model.js';
 
+export const register = async (req, res) => {
+
+    const { userName, email, password } = req.body;
+
+    const user = new User({ userName, email, password, role: "CLIENT_ROLE" });
+
+    const salt = bcryptjs.genSaltSync();
+
+    user.password = bcryptjs.hashSync(password, salt);
+
+    await user.save();
+    
+    res.status(200).json({
+
+        user
+
+    });
+
+}
+
 export const userPost = async (req, res) => {
 
     const { userName, email, password, role } = req.body;
@@ -16,7 +36,7 @@ export const userPost = async (req, res) => {
     
     res.status(200).json({
 
-        user
+        msg: `${req.usuario.userName} haz agregado correctamente a ${user.userName}`
 
     });
 
@@ -57,9 +77,46 @@ export const userAdminPut = async (req, res) => {
     await User.findByIdAndUpdate(id, resto);
     const user = await User.findOne({ _id: id });
 
+    const { password } = req.body;
+
+    if (password != null) {
+        
+        const salt = bcryptjs.genSaltSync();
+        
+        user.password = bcryptjs.hashSync(password, salt);
+
+        await user.save();
+
+    }
+
     res.status(200).json({
-        msd: 'Actualización de Usuario Exitosamente',
-        user
+        msg: `${req.usuario.userName} haz actualizado correctamente los datos de ${user.userName}`
+    });
+
+}
+
+export const userClientPut = async (req, res) => {
+
+    const id = req.usuario._id;
+
+    const { _id,state,role, ...resto } = req.body;
+    await User.findByIdAndUpdate(id, resto);
+    const user = await User.findOne({ _id: id });
+
+    const { password } = req.body;
+
+    if (password != null) {
+        
+        const salt = bcryptjs.genSaltSync();
+        
+        user.password = bcryptjs.hashSync(password, salt);
+
+        await user.save();
+
+    }
+
+    res.status(200).json({
+        msg: `${req.usuario.userName} haz actualizado tus datos`
     });
 
 }
@@ -71,7 +128,6 @@ export const userDelete = async (req, res) => {
     const user = await User.findOne({ _id: id });
 
     res.status(200).json({
-        msg: 'Usuario Eliminado',
-        user
+        msg: `${req.usuario.userName} haz eliminado exitosamente a ${user.userName}`,
     });
 }
