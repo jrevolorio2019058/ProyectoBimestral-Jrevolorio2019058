@@ -30,3 +30,21 @@ export const verificacionRolAdmin = async (req, res, next) => {
     next();
 
 }
+
+export const verificacionDeleteClient = async (req, res, next) => {
+    
+    const { confirmationDelete } = req.body;
+
+    if (confirmationDelete != "ELIMINAR MI PERFIL") {
+        
+        return res.status(400).json({
+
+            msg: `${req.usuario.userName}, Escribe ELIMINAR MI PERFIL para poder eliminar tu perfil.`
+
+        })
+
+    }
+
+    next();
+
+}

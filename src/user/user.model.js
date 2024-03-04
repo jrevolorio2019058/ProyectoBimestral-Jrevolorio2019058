@@ -34,14 +34,14 @@ const UserSchema = mongoose.Schema({
 
 });
 
-/*UserSchema.methods.toJSON = function () {
+UserSchema.methods.toJSON = function () {
     
-    const { _v, password, _id, ...usuario } = this.toObject();
+    const { _v, password, _id, ...user } = this.toObject();
 
-    usuario.uid = _id;
+    user.uid = _id;
 
-    return usuario;
+    return user;
 
-}*/
+}
 
 export default mongoose.model('User', UserSchema);

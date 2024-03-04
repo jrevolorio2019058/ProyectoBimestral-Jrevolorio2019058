@@ -2,11 +2,12 @@ import { Router } from 'express';
 
 import { check } from 'express-validator';
 
-import { validarCampos, verificacionRolAdmin } from "../middlewares/validar-campos.js";
+import { validarCampos, verificacionDeleteClient, verificacionRolAdmin } from "../middlewares/validar-campos.js";
 
 import { existeUsuarioById, existenEmail } from '../helpers/db-validator.js';
 
 import {
+    clientDelete,
     register,
     userAdminPut,
     userClientPut,
@@ -83,6 +84,16 @@ router.delete(
         check("id").custom(existeUsuarioById),
         validarCampos
     ], userDelete
+)
+
+router.delete(
+    "/",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        verificacionDeleteClient,
+        validarCampos
+    ], clientDelete
 )
 
 export default router;

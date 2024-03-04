@@ -131,3 +131,16 @@ export const userDelete = async (req, res) => {
         msg: `${req.usuario.userName} haz eliminado exitosamente a ${user.userName}`,
     });
 }
+
+export const clientDelete = async (req, res) => {
+
+    const id = req.usuario._id;
+
+    await User.findByIdAndUpdate(id, { state: false });
+
+    const user = await User.findOne({ _id: id });
+
+    res.status(200).json({
+        msg: `${req.usuario.userName} haz eliminado exitosamente tu usuario.`,
+    });
+}
