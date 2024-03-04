@@ -1,27 +1,33 @@
-const { Router } = require('express');
+import { Router } from 'express';
 
-const { check } = require('express-validator');
+import { check } from 'express-validator';
 
-const { validarCampos } = require('../middlewares/validar-campos');
+import { validarCampos } from "../middlewares/validar-campos.js";
 
-const { existenEmail, existeUsuarioById, esRolValido} = require('../helpers/db-validator');
+import { esRolValido, existeUsuarioById, existenEmail } from '../helpers/db-validator.js';
 
-const { usuarioPost, usuarioGet, getUsuarioById, usuariosPut, usuariosDelete} = require('../controllers/user.controller');
+import {
+    getUserById,
+    userDelete,
+    userGet,
+    userPost,
+    userPut
+} from '../user/user.controller.js';
 
 const router = Router();
 
-router.get("/", usuarioGet);
+router.get("/", userGet);
 
 router.post(
     "/",
     [
-        check("nombre", "Nombre obligatorio").not().isEmpty(),
+        check("userName", "Nombre obligatorio").not().isEmpty(),
         check("password", "Contraseña debe de contener minimo 6 caracteres").isLength({ min: 6, }),
-        check("correo", "No es un correo valido").isEmail(),
-        check("correo").custom(existenEmail),
+        check("email", "No es un correo valido").isEmail(),
+        check("email").custom(existenEmail),
         check("role").custom(esRolValido),
         validarCampos,
-    ], usuarioPost
+    ], userPost
 );
 
 router.get(
@@ -30,7 +36,7 @@ router.get(
         check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos
-    ], getUsuarioById
+    ], getUserById
 );
 
 router.put(
@@ -39,7 +45,7 @@ router.put(
         check("id", "El formato del ID no es compatible con MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos
-    ], usuariosPut
+    ], userPut
 );
 
 router.delete(
@@ -48,7 +54,7 @@ router.delete(
         check("id", "El id no es un formato válido de MongoDB").isMongoId(),
         check("id").custom(existeUsuarioById),
         validarCampos
-    ], usuariosDelete
+    ], userDelete
 )
 
-module.exports = router;
+export default router;

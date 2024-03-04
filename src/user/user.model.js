@@ -1,13 +1,13 @@
-const { Schema, model } = require('mongoose');
+import mongoose from "mongoose";
 
-const UsuarioSchema = Schema({
+const UserSchema = mongoose.Schema({
 
-    nombre: {
+    userName: {
         type: String,
         required: [true, 'El nombre es obligatorio']
     },
 
-    correo: {
+    email: {
         type: String,
         required: [true, 'El correo es obligatorio']
     },
@@ -27,11 +27,21 @@ const UsuarioSchema = Schema({
         enum: ["ADMINISTRATOR_ROLE", "CLIENTE_ROLE"]
     },
 
-    estado: {
+    state: {
         type: Boolean,
         default: true
     }
 
 });
 
-module.exports = model('Usuario', UsuarioSchema);
+/*UserSchema.methods.toJSON = function () {
+    
+    const { _v, password, _id, ...usuario } = this.toObject();
+
+    usuario.uid = _id;
+
+    return usuario;
+
+}*/
+
+export default mongoose.model('User', UserSchema);
