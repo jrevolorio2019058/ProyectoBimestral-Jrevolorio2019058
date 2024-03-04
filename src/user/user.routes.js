@@ -4,7 +4,7 @@ import { check } from 'express-validator';
 
 import { validarCampos } from "../middlewares/validar-campos.js";
 
-import { esRolValido, existeUsuarioById, existenEmail } from '../helpers/db-validator.js';
+import { existeUsuarioById, existenEmail } from '../helpers/db-validator.js';
 
 import {
     getUserById,
@@ -25,7 +25,6 @@ router.post(
         check("password", "Contraseña debe de contener minimo 6 caracteres").isLength({ min: 6, }),
         check("email", "No es un correo valido").isEmail(),
         check("email").custom(existenEmail),
-        check("role").custom(esRolValido),
         validarCampos,
     ], userPost
 );

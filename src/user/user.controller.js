@@ -2,14 +2,37 @@ import bcryptjs from 'bcryptjs';
 
 import User from './user.model.js';
 
+import Role from '../roles/role.model.js';
+
 export const userPost = async (req, res) => {
 
     const { userName, email, password, role } = req.body;
+
     const user = new User({ userName, email, password, role });
+
+    const existeRole = await Role.findOne({ role: "ADMIN_ROLE" });
+
+    if (!existeRole) {
+
+        const roleAdmin = new Role({
+
+            role: "ADMIN_ROLE",
+
+        });
+
+        const roleCliente = new Role({
+
+            role: "CLIENT_ROLE",
+
+        });
+
+        await roleAdmin.save();
+        await roleCliente.save();
+    }
 
     const salt = bcryptjs.genSaltSync();
 
-    usuario.password = bcryptjs.hashSync(password, salt);
+    user.password = bcryptjs.hashSync(password, salt);
 
     await user.save();
     
