@@ -14,6 +14,8 @@ import userRoutes from '../src/user/user.routes.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
 
+import categoryRoutes from '../src/categories/category.routes.js';
+
 class Server{
 
     constructor() {
@@ -24,6 +26,8 @@ class Server{
         this.usuarioPath = '/proyectoFinal/v2/user';
 
         this.authPath = '/proyectoFinal/v2/auth';
+
+        this.categoryPath = '/proyectoFinal/v2/category';
 
         this.middlewares();
         this.conectarDB();
@@ -51,6 +55,7 @@ class Server{
 
         this.app.use(this.usuarioPath, userRoutes);
         this.app.use(this.authPath, authRoutes);
+        this.app.use(this.categoryPath, categoryRoutes);
 
     }
 
