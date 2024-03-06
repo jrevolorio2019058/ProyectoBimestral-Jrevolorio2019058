@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "65e81d94f382c94fd33b5b2b"
+  },
+  "categoryName": "Bebidas Alcoholicas",
+  "categoryDescription": "Son productos donde encontraras bebidas con contenido Alcoholico.",
+  "idProduct": [],
+  "categoryState": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e81dc3f382c94fd33b5b2f"
+  },
+  "categoryName": "Deporte",
+  "categoryDescription": "Son productos donde encontraras objetos para hacer deportes",
+  "idProduct": [],
+  "categoryState": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e81e13f382c94fd33b5b3a"
+  },
+  "categoryName": "Cocina/Hogar",
+  "categoryDescription": "Objetos o utelncilios para el hogar y cocina.",
+  "idProduct": [],
+  "categoryState": true,
+  "__v": 0
+}]

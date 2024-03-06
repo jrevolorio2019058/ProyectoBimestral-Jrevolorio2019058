@@ -52,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"oscarmorales@kinal.edu.gt\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"email\": \"braulioecheverria@kinal.edu.gt\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -294,6 +294,165 @@
 										"v2",
 										"user",
 										"65e5f4efad122b48ef552e8e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "addCategory",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"categoryName\": \"Cocina\",\r\n    \"categoryDescription\": \"Son productos donde encontraras objetos para la cocina.\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "editCategory",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryName\": \"Cocina/Hogar\",\r\n    \"categoryDescription\": \"Objetos o utelncilios para el hogar y cocina.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/category/65e81e13f382c94fd33b5b3a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"category",
+										"65e81e13f382c94fd33b5b3a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCategory",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/category/65e81dc3f382c94fd33b5b2f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"category",
+										"65e81dc3f382c94fd33b5b2f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Views",
+					"item": [
+						{
+							"name": "users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzQ3MDcsImV4cCI6MTcwOTU4NTUwN30.9QV8bFyk8syyGuC4L2O2Y0tr-nOcdmCq_CFHegFJDMo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"category"
 									]
 								}
 							},
