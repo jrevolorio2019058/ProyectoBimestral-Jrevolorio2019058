@@ -4,11 +4,22 @@ import User from '../user/user.model.js';
 
 import Category from '../categories/category.model.js';
 
+import Product from '../products/product.model.js';
+
 export const existeUsuarioById = async (id = '') => {
 
     const existeUsuario = await User.findOne({ id });
     if (existeUsuario) {
         throw new Error(`El usuario con el ${id} no existe`)
+    }
+
+}
+
+export const existeProductoById = async (id = '') => {
+
+    const existeProducto = await Product.findOne({ _id: id });
+    if (!existeProducto) {
+        throw new Error(`El producto con el ${id} no existe`)
     }
 
 }

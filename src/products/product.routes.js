@@ -4,10 +4,12 @@ import {check} from 'express-validator';
 
 import { validarCampos } from '../middlewares/validar-campos.js';
 
-import {existCategory} from '../helpers/db-validator.js';
+import {existCategory, existeProductoById} from '../helpers/db-validator.js';
 
 import{
-    productPost
+    productPost,
+    productGet,
+    productById
 } from '../products/product.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -31,5 +33,25 @@ router.post(
         validarCampos
     ], productPost
 )
+
+router.get("/",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validarCampos
+    ], productGet
+);
+
+router.get(
+    "/:id",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        check("id", "El id no tiene un formato de mongo Aceptable").isMongoId(),
+        check("id").custom(existeProductoById),
+        validarCampos
+    ], productById
+);
+
 
 export default router;

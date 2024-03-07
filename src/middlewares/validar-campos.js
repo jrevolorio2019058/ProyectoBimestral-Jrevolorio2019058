@@ -2,6 +2,8 @@ import { validationResult } from "express-validator";
 
 import User from '../user/user.model.js';
 
+import Product from '../products/product.model.js';
+
 export const validarCampos = (req, res, next) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
