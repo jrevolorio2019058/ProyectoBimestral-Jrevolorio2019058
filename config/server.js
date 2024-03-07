@@ -16,6 +16,8 @@ import authRoutes from '../src/auth/auth.routes.js';
 
 import categoryRoutes from '../src/categories/category.routes.js';
 
+import productRoutes from '../src/products/product.routes.js';
+
 class Server{
 
     constructor() {
@@ -28,6 +30,8 @@ class Server{
         this.authPath = '/proyectoFinal/v2/auth';
 
         this.categoryPath = '/proyectoFinal/v2/category';
+
+        this.productPath = '/proyectoFinal/v2/product';
 
         this.middlewares();
         this.conectarDB();
@@ -56,6 +60,7 @@ class Server{
         this.app.use(this.usuarioPath, userRoutes);
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.categoryPath, categoryRoutes);
+        this.app.use(this.productPath, productRoutes);
 
     }
 

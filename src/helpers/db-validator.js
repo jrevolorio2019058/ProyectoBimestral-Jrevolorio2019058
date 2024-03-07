@@ -2,6 +2,8 @@ import Role from '../roles/role.model.js';
 
 import User from '../user/user.model.js';
 
+import Category from '../categories/category.model.js';
+
 export const existeUsuarioById = async (id = '') => {
 
     const existeUsuario = await User.findOne({ id });
@@ -26,4 +28,14 @@ export const esRolValido = async (role='') => {
     if(!existeRol){
         throw new Error(`El role ${ role } no existe en base de datos.` )
     }
+}
+
+export const existCategory = async (category = '') =>{
+
+    const existeCategoria = await Category.findOne({categoryName: category});
+
+    if(!existeCategoria){
+        throw new Error(`La categoría ${category} no existe en la base de datos.`)
+    }
+
 }
