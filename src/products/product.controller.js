@@ -61,3 +61,39 @@ export const productById = async(req, res) =>{
     })
 
 }
+
+export const productPut = async(req, res) =>{
+
+    const {id} = req.params;
+
+    const {_id, productState, ...resto} = req.body;
+
+    const categoriaAnterior = await Product.findOne({_id: id});
+
+    await Product.findByIdAndUpdate(id, resto);
+
+    const product = await Product.findOne({_id: id});
+
+    console.log(categoriaAnterior.category);
+    console.log(product.category);
+
+    const categoriesUpdate = await Category.findOneAndUpdate(
+        { categoryName: resto.category, idProduct: { $ne: id } },
+        { $addToSet: { idProduct: id } },
+        { new: true }
+    )
+
+    const categoriesDelete = await Category.findOneAndUpdate(
+        { categoryName: categoriaAnterior.category },
+        { $pull: { idProduct: categoriaAnterior._id } },
+        { new: true }
+    )
+
+    res.status(200).json({
+        msg: `${req.usuario.userName} haz actualizado correctamente los datos del producto ${product.productName}`
+    });
+
+
+
+
+}

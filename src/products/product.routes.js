@@ -9,7 +9,8 @@ import {existCategory, existeProductoById} from '../helpers/db-validator.js';
 import{
     productPost,
     productGet,
-    productById
+    productById,
+    productPut
 } from '../products/product.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -51,6 +52,18 @@ router.get(
         check("id").custom(existeProductoById),
         validarCampos
     ], productById
+);
+
+router.put(
+    "/:id",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
+        check("id", "El id no tiene un formato de mongo Aceptable").isMongoId(),
+        check("id").custom(existeProductoById),
+        check("category").custom(existCategory),
+        validarCampos
+    ], productPut
 );
 
 
