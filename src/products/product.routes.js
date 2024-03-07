@@ -10,7 +10,8 @@ import{
     productPost,
     productGet,
     productById,
-    productPut
+    productPut,
+    productDelete
 } from '../products/product.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -66,5 +67,16 @@ router.put(
     ], productPut
 );
 
+
+router.delete(
+    "/:id",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
+        check("id", "El id no tiene un formato de mongo Aceptable").isMongoId(),
+        check("id").custom(existeProductoById),
+        validarCampos
+    ], productDelete
+);
 
 export default router;

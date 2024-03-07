@@ -93,7 +93,15 @@ export const productPut = async(req, res) =>{
         msg: `${req.usuario.userName} haz actualizado correctamente los datos del producto ${product.productName}`
     });
 
+}
 
+export const productDelete = async (req, res) => {
+    const { id } = req.params;
+    await Product.findByIdAndUpdate(id, { productState: false });
 
+    const product = await Product.findOne({ _id: id });
 
+    res.status(200).json({
+        msg: `${req.usuario.userName} haz eliminado exitosamente el producto ${product.productName}`,
+    });
 }
