@@ -43,10 +43,28 @@ export const esRolValido = async (role='') => {
 
 export const existCategory = async (category = '') =>{
 
-    const existeCategoria = await Category.findOne({categoryName: category});
 
-    if(!existeCategoria){
-        throw new Error(`La categoría ${category} no existe en la base de datos.`)
+    if (category != "") {
+        
+        const existeCategoria = await Category.findOne({ categoryName: category });
+
+        if (!existeCategoria) {
+        throw new Error(`La categoría ${category} no existe en la base de datos.`);
+        }
+
     }
 
 }
+
+export const existProductName = async (product = "") => {
+    
+    if (product != "") {
+
+        const existeProducto = await Product.findOne({ productName: product });
+        
+        if (!existeProducto) {
+            throw new Error(`El producto ${product} no existe en la base de datos.`);
+        }
+
+    }
+};

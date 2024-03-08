@@ -1,16 +1,14 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
-import {check} from 'express-validator';
+import { check } from 'express-validator';
 
-import {validarCampos} from '../middlewares/validar-campos.js';
+import { validarCampos } from '../middlewares/validar-campos.js';
 
-import{
-
-    categoryPost,
+import {
+    categoryDelete,
     categoryGet,
-    categoryPut,
-    categoryDelete
-
+    categoryPost,
+    categoryPut
 } from '../categories/category.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -34,7 +32,7 @@ router.post(
 router.get("/",
     [
         validarJWT,
-        tieneRole('ADMIN_ROLE'),
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
         validarCampos
     ], categoryGet
 );

@@ -26,27 +26,6 @@ export const productPost = async (req, res) => {
 
 }
 
-export const productGet = async(req, res = response) => {
-
-    const {limite, desde} = req.query;
-    const query = {productState: true};
-
-    const [total, product] = await Promise.all([
-
-        Product.countDocuments(query),
-        Product.find(query)
-            .skip(Number(desde))
-            .limit(Number(limite))
-        
-    ]);
-
-    res.status(200).json({
-        total,
-        product
-    })
-
-}
-
 export const productById = async(req, res) =>{
 
     const {id} = req.params;
@@ -64,7 +43,7 @@ export const productById = async(req, res) =>{
 
 export const productGetFiltro = async(req, res = response) => {
 
-    const {category, increase, decrease, productEmpty, mostSells} = req.body;
+    const {category, increase, decrease, productEmpty, mostSells, nameProduct} = req.body;
 
     if (req.body.hasOwnProperty("category") != "") {
       const { limite, desde } = req.query;
@@ -118,6 +97,40 @@ export const productGetFiltro = async(req, res = response) => {
       const [total, product] = await Promise.all([
         Product.countDocuments(query),
         Product.find(query).skip(Number(desde)).limit(Number(limite)),
+      ]);
+
+      res.status(200).json({
+        total,
+        product,
+      });
+    } else if (req.body.hasOwnProperty("mostSells") == true) {
+        const { limite, desde } = req.query;
+
+      const query = { productState: true};
+
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+          .sort({ sells: -1 })
+          .skip(Number(desde))
+          .limit(Number(limite)),
+      ]);
+
+      res.status(200).json({
+        total,
+        product,
+      });
+    }else if (req.body.hasOwnProperty("nameProduct") == true) {
+        const { limite, desde } = req.query;
+
+      const query = { productState: true, productName: nameProduct};
+
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+          .sort({ sells: -1 })
+          .skip(Number(desde))
+          .limit(Number(limite)),
       ]);
 
       res.status(200).json({
