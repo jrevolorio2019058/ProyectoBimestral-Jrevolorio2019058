@@ -62,6 +62,114 @@ export const productById = async(req, res) =>{
 
 }
 
+export const productGetFiltro = async(req, res = response) => {
+
+    const {category, increase, decrease, productEmpty, mostSells} = req.body;
+
+    if(category != ""){
+
+        const {limite, desde} = req.query;
+        const query = {category: category, productState: true};
+
+        const [total, product] = await Promise.all([
+
+            Product.countDocuments(query),
+            Product.find(query)
+                .skip(Number(desde))
+                .limit(Number(limite))
+            
+        ]);
+
+        res.status(200).json({
+            total,
+            product
+        })
+
+    }else if(increase == true){
+
+        const {limite, desde} = req.query;
+        const query = {productState: true};
+
+        const [total, product] = await Promise.all([
+
+            Product.countDocuments(query),
+            Product.find(query)
+                .sort({productName: 1})
+                .skip(Number(desde))
+                .limit(Number(limite))
+            
+        ]);
+
+        res.status(200).json({
+            total,
+            product
+        })
+    }else if(decrease == true){
+
+        const {limite, desde} = req.query;
+        const query = {productState: true};
+
+        const [total, product] = await Promise.all([
+
+            Product.countDocuments(query),
+            Product.find(query)
+                .sort({productName: -1})
+                .skip(Number(desde))
+                .limit(Number(limite))
+            
+        ]);
+
+        res.status(200).json({
+            total,
+            product
+        })
+
+    }else if(productEmpty == true){
+
+
+        const {limite, desde} = req.query;
+        const query = {productState: true, stock: 0};
+
+        const [total, product] = await Promise.all([
+
+            Product.countDocuments(query),
+            Product.find(query)
+                .skip(Number(desde))
+                .limit(Number(limite))
+            
+        ]);
+
+        res.status(200).json({
+            total,
+            product
+        })
+
+    }else{
+
+        //Falta por corregir
+
+        const {limite, desde} = req.query;
+        const query = {productState: true};
+
+        const [total, product] = await Promise.all([
+
+            Product.countDocuments(query),
+            Product.find(query)
+                .skip(Number(desde))
+                .limit(Number(limite))
+            
+        ]);
+
+        res.status(200).json({
+            total,
+            product
+        })
+
+    }
+
+}
+
+
 export const productPut = async(req, res) =>{
 
     const {id} = req.params;

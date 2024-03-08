@@ -2,7 +2,7 @@ import {Router} from 'express';
 
 import {check} from 'express-validator';
 
-import { validarCampos } from '../middlewares/validar-campos.js';
+import { validarCampos, validacionFiltros } from '../middlewares/validar-campos.js';
 
 import {existCategory, existeProductoById} from '../helpers/db-validator.js';
 
@@ -11,7 +11,8 @@ import{
     productGet,
     productById,
     productPut,
-    productDelete
+    productDelete,
+    productGetFiltro
 } from '../products/product.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -42,6 +43,15 @@ router.get("/",
         tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
         validarCampos
     ], productGet
+);
+
+router.get("/filter",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validacionFiltros,
+        validarCampos
+    ], productGetFiltro
 );
 
 router.get(

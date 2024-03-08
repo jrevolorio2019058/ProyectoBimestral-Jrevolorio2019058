@@ -50,3 +50,21 @@ export const verificacionDeleteClient = async (req, res, next) => {
     next();
 
 }
+
+export const validacionFiltros = (req, res, next) =>{
+
+    const {increase, decrease} = req.body;
+
+    if(increase == true && decrease == true){
+
+        return res.status(400).json({
+
+            msg: `Solo se puede tener de forma ascendente o descente pero no los dos a la misma vez`
+
+        })
+
+    }
+
+    next();
+
+}
