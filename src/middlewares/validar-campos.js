@@ -4,6 +4,8 @@ import User from '../user/user.model.js';
 
 import Product from '../products/product.model.js';
 
+import SchoppingCar from '../shoppingCar/shoppingCar.model.js';
+
 export const validarCampos = (req, res, next) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
@@ -62,6 +64,22 @@ export const validacionFiltros = (req, res, next) =>{
             msg: `Solo se puede tener de forma ascendente o descente pero no los dos a la misma vez`
 
         })
+
+    }
+
+    next();
+
+}
+
+export const existenciaCarrito = async (req, res, next) =>{
+
+    const validar = await SchoppingCar.findOne({idCliente: req.usuario._id});
+
+    if(!validar){
+
+        const shoppingCar = new SchoppingCar({idCliente: req.usuario._id});
+
+        await shoppingCar.save();
 
     }
 

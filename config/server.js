@@ -18,7 +18,7 @@ import categoryRoutes from '../src/categories/category.routes.js';
 
 import productRoutes from '../src/products/product.routes.js';
 
-import shoppingCarRoutes from '../src/shoppingCar/shoppingCar.routes.js';
+import shoppingCarRoutes from '../src/shoppingCar/schoppingCar.routes.js';
 
 class Server{
 
