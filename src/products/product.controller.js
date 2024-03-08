@@ -1,7 +1,7 @@
 import Product from './product.model.js';
 
-import Category from '../categories/category.model.js';
 import { response } from 'express';
+import Category from '../categories/category.model.js';
 
 export const productPost = async (req, res) => {
 
@@ -66,105 +66,79 @@ export const productGetFiltro = async(req, res = response) => {
 
     const {category, increase, decrease, productEmpty, mostSells} = req.body;
 
-    if(category != ""){
+    if (req.body.hasOwnProperty("category") != "") {
+      const { limite, desde } = req.query;
+      const query = { category: category, productState: true };
 
-        const {limite, desde} = req.query;
-        const query = {category: category, productState: true};
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query).skip(Number(desde)).limit(Number(limite)),
+      ]);
 
-        const [total, product] = await Promise.all([
+      res.status(200).json({
+        total,
+        product,
+      });
+    } else if (req.body.hasOwnProperty("increase") == true) {
+      const { limite, desde } = req.query;
+      const query = { productState: true };
 
-            Product.countDocuments(query),
-            Product.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
-            
-        ]);
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+          .sort({ productName: 1 })
+          .skip(Number(desde))
+          .limit(Number(limite)),
+      ]);
 
-        res.status(200).json({
-            total,
-            product
-        })
+      res.status(200).json({
+        total,
+        product,
+      });
+    } else if (req.body.hasOwnProperty("decrease") == true) {
+      const { limite, desde } = req.query;
+      const query = { productState: true };
 
-    }else if(increase == true){
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+          .sort({ productName: -1 })
+          .skip(Number(desde))
+          .limit(Number(limite)),
+      ]);
 
-        const {limite, desde} = req.query;
-        const query = {productState: true};
+      res.status(200).json({
+        total,
+        product,
+      });
+    } else if (req.body.hasOwnProperty("productEmpty") == true) {
+      const { limite, desde } = req.query;
+      const query = { productState: true, stock: 0 };
 
-        const [total, product] = await Promise.all([
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query).skip(Number(desde)).limit(Number(limite)),
+      ]);
 
-            Product.countDocuments(query),
-            Product.find(query)
-                .sort({productName: 1})
-                .skip(Number(desde))
-                .limit(Number(limite))
-            
-        ]);
+      res.status(200).json({
+        total,
+        product,
+      });
+    } else {
+      //Falta por corregir
 
-        res.status(200).json({
-            total,
-            product
-        })
-    }else if(decrease == true){
+      const { limite, desde } = req.query;
+      const query = { productState: true };
 
-        const {limite, desde} = req.query;
-        const query = {productState: true};
+      const [total, product] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query).skip(Number(desde)).limit(Number(limite)),
+      ]);
 
-        const [total, product] = await Promise.all([
-
-            Product.countDocuments(query),
-            Product.find(query)
-                .sort({productName: -1})
-                .skip(Number(desde))
-                .limit(Number(limite))
-            
-        ]);
-
-        res.status(200).json({
-            total,
-            product
-        })
-
-    }else if(productEmpty == true){
-
-
-        const {limite, desde} = req.query;
-        const query = {productState: true, stock: 0};
-
-        const [total, product] = await Promise.all([
-
-            Product.countDocuments(query),
-            Product.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
-            
-        ]);
-
-        res.status(200).json({
-            total,
-            product
-        })
-
-    }else{
-
-        //Falta por corregir
-
-        const {limite, desde} = req.query;
-        const query = {productState: true};
-
-        const [total, product] = await Promise.all([
-
-            Product.countDocuments(query),
-            Product.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
-            
-        ]);
-
-        res.status(200).json({
-            total,
-            product
-        })
-
+      res.status(200).json({
+        total,
+        product,
+      });
     }
 
 }
