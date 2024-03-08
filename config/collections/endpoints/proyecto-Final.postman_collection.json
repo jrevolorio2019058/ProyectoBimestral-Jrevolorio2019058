@@ -110,6 +110,72 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDgyNDZlMzIwZGRlOTZjZGQzYjEiLCJpYXQiOjE3MDk5MDYyNDksImV4cCI6MTcwOTkxNzA0OX0.z6tvWHatFwVbhytx4Dw61_2odCfPynY_Iyz33Swdkos",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    //\"category\": \"Deportes\"\r\n    //\"increase\": true\r\n    //\"decrease\": true\r\n    //\"productEmpty\": true\r\n    //\"mostSells\": true\r\n    //\"nameProduct\": \"Cuchillos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDgyNDZlMzIwZGRlOTZjZGQzYjEiLCJpYXQiOjE3MDk5MDYyNDksImV4cCI6MTcwOTkxNzA0OX0.z6tvWHatFwVbhytx4Dw61_2odCfPynY_Iyz33Swdkos",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"category"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -311,13 +377,13 @@
 								"header": [
 									{
 										"key": "x-token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk4MzMzODcsImV4cCI6MTcwOTg0NDE4N30.Lx1NY7m7ObBl5jJKD2hed-kO5E-2YHVdGTy5ntQoyAU",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\r\n    \"categoryName\": \"Cocina\",\r\n    \"categoryDescription\": \"Son productos donde encontraras objetos para la cocina.\"\r\n\r\n}",
+									"raw": "{\r\n\r\n    \"categoryName\": \"Deportes\",\r\n    \"categoryDescription\": \"Son productos donde encontraras objetos para deportes.\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -381,7 +447,13 @@
 							"name": "deleteCategory",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "http://localhost:3000/proyectoFinal/v2/category/65e81dc3f382c94fd33b5b2f",
 									"protocol": "http",
@@ -402,21 +474,30 @@
 					]
 				},
 				{
-					"name": "Views",
+					"name": "Product",
 					"item": [
 						{
-							"name": "users",
+							"name": "addProduct",
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [
 									{
 										"key": "x-token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZjMzYzNhNTQ3MTM0OTU5YjVlYTkiLCJpYXQiOjE3MDk1NzQ3MDcsImV4cCI6MTcwOTU4NTUwN30.9QV8bFyk8syyGuC4L2O2Y0tr-nOcdmCq_CFHegFJDMo",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5MDM2NjIsImV4cCI6MTcwOTkxNDQ2Mn0.eA_wdQCIakWkX35i37K5t0DRodTonjLjcVP2njaNpTY",
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\": \"Cuchillos\",\r\n    \"price\": 50.00,\r\n    \"stock\": 20,\r\n    \"category\": \"Cocina\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:3000/proyectoFinal/v2/user",
+									"raw": "http://localhost:3000/proyectoFinal/v2/product",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -425,25 +506,34 @@
 									"path": [
 										"proyectoFinal",
 										"v2",
-										"user"
+										"product"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "categories",
+							"name": "editProduct",
 							"request": {
-								"method": "GET",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "x-token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3MTA4MzksImV4cCI6MTcwOTcyMTYzOX0.wJRil0CbeS7H-tFhKdS23QIWMqejM-DtMs1Bn4gIydU",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk4MzMzODcsImV4cCI6MTcwOTg0NDE4N30.Lx1NY7m7ObBl5jJKD2hed-kO5E-2YHVdGTy5ntQoyAU",
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\": \"Balon de Futbol\",\r\n    \"price\": 50.00,\r\n    \"stock\": 5000,\r\n    \"category\": \"Deportes\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:3000/proyectoFinal/v2/category",
+									"raw": "http://localhost:3000/proyectoFinal/v2/product/65e9fd06d26f36c0c38a978a",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -452,7 +542,69 @@
 									"path": [
 										"proyectoFinal",
 										"v2",
-										"category"
+										"product",
+										"65e9fd06d26f36c0c38a978a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteProduct",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk3ODgzMDksImV4cCI6MTcwOTc5OTEwOX0.PPqhwnHocOkmmLSkthZYURK-EPj_WMCteH2sNiNlQbo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/product/65e93c276b0074845022390f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"product",
+										"65e93c276b0074845022390f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Views",
+					"item": [
+						{
+							"name": "productById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDgyNDZlMzIwZGRlOTZjZGQzYjEiLCJpYXQiOjE3MDk5MDYyNDksImV4cCI6MTcwOTkxNzA0OX0.z6tvWHatFwVbhytx4Dw61_2odCfPynY_Iyz33Swdkos",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/product/65e93c276b0074845022390f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"product",
+										"65e93c276b0074845022390f"
 									]
 								}
 							},
