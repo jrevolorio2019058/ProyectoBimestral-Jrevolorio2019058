@@ -18,7 +18,8 @@ export const addCar = async(req, res) => {
 
     const shoppingCar = await ShoppingCar.findOneAndUpdate(
         { idCliente: req.usuario._id, sellDone: false},
-        { $addToSet: { productName: resto.productName, prizeProduct: `${product.price} | ${resto.productName}-${resto.quantityProducts}`},
+        { $addToSet: { productName: resto.productName},
+          $push: {prizeProduct: `Q.${product.price * resto.quantityProducts} | ${resto.productName} -> ${resto.quantityProducts}`},
           $set: {quantityProducts: cantidadActual, total: finalTotal}
         },
         { new: true }
