@@ -12,7 +12,7 @@ export const addCar = async(req, res) => {
 
     const productSave = await Product.findOneAndUpdate(
         { productName: resto.productName},
-        {$set: {sells: product.sells + 1, stock: product.stock - resto.quantityProducts}},
+        {$set: {sells: product.sells + resto.quantityProducts, stock: product.stock - resto.quantityProducts}},
         { new: true }
     )
 

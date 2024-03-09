@@ -4,7 +4,7 @@ import {Router} from 'express';
 
 import {check} from 'express-validator';
 
-import { validarCampos } from '../middlewares/validar-campos.js';
+import { validarCampos , existenciaCarrito2} from '../middlewares/validar-campos.js';
 
 import {existUserName, existPaymentMethod} from '../helpers/db-validator.js';
 
@@ -32,6 +32,7 @@ router.post(
         check("paymentCard", "Necesita una tarjeta de pago").not().isEmpty(),
         check("deliverAddress", "Necesita una dirección de envio").not().isEmpty(),
         check("deliverAddress", "El lugar de envio debe contener maximo 200 caracteres").isLength({ max:200 }),
+        existenciaCarrito2,
         validarCampos
     ],makePurchase
 

@@ -86,3 +86,21 @@ export const existenciaCarrito = async (req, res, next) =>{
     next();
 
 }
+
+export const existenciaCarrito2 = async (req, res, next) =>{
+
+    const validar = await SchoppingCar.findOne({idCliente: req.usuario._id});
+
+    if(!validar){
+
+        return res.status(400).json({
+
+            msg: `No se tiene un carrito activo`
+
+        })
+
+    }
+
+    next();
+
+}
