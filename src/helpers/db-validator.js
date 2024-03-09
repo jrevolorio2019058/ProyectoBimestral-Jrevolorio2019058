@@ -68,3 +68,16 @@ export const existProductName = async (product = "") => {
 
     }
 };
+
+export const existUserName = async (userName = "") => {
+    
+    if (userName != "") {
+
+        const existeProducto = await User.findOne({ userName: userName });
+        
+        if (!existeProducto) {
+            throw new Error(`El producto ${userName} no existe en la base de datos.`);
+        }
+
+    }
+};

@@ -2,6 +2,8 @@ import ShoppingCar from './shoppingCar.model.js';
 
 import Product from '../products/product.model.js';
 
+import PaymentMethod from '../paymentMethod/paymenthMehod.model.js';
+
 export const addCar = async(req, res) => {
 
     const {_id, total, idCliente, sellDone, ...resto} = req.body;
@@ -17,13 +19,17 @@ export const addCar = async(req, res) => {
     const finalTotal = car.total + subTotal;
 
     const shoppingCar = await ShoppingCar.findOneAndUpdate(
-        { idCliente: req.usuario._id, sellDone: false},
+        { idCliente: req.usuario._id},
         { $addToSet: { productName: resto.productName},
           $push: {prizeProduct: `Q.${product.price * resto.quantityProducts} | ${resto.productName} -> ${resto.quantityProducts}`},
           $set: {quantityProducts: cantidadActual, total: finalTotal}
         },
         { new: true }
     )
+
+    const pay = new PaymentMethod({namePaymentMethod: "Efectivo", namePaymentMethod: "American-Express", namePaymentMethod: "VISA", namePaymentMethod: "Master Card"});
+
+    await pay.save();
 
     res.status(200).json({
         msg: `${req.usuario.userName} haz agregado ${resto.productName} al carrito exitosamente`
@@ -35,7 +41,7 @@ export const showShopping = async (req, res = response) =>{
 
     const {limite, desde} = req.query;
 
-    const query = {idCliente: req.usuario._id, sellDone: true};
+    const query = {idCliente: req.usuario._id};
 
     const [total, shoppingCar] = await Promise.all([
 
@@ -48,7 +54,7 @@ export const showShopping = async (req, res = response) =>{
 
     res.status(200).json({
 
-        msg: `${req.usuario.userName} tus compras:`,
+        msg: `${req.usuario.userName} tu compra Pendiente:`,
         total,
         shoppingCar
 

@@ -36,13 +36,6 @@ const ShoppingCarSchema = mongoose.Schema({
 
     },
 
-    sellDone: {
-
-        type: Boolean,
-        default: false
-
-    }
-
 })
 
 export default mongoose.model('ShoppingCar', ShoppingCarSchema);

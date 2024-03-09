@@ -6,7 +6,7 @@ import {check} from 'express-validator';
 
 import { validarCampos } from '../middlewares/validar-campos.js';
 
-import {existProductName} from '../helpers/db-validator.js';
+import {existUserName} from '../helpers/db-validator.js';
 
 import{
     makePurchase,
@@ -26,6 +26,7 @@ router.post(
         validarJWT,
         tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
         check("purchaserNIT", "Su nit es obligatorio").not().isEmpty(),
+        check("purchaserNIT", "El NIT debe de contener 9 caracteres").isLength({ min: 9,max:9 }),
         check("paymentMethod", "Necesita un metodo de pago").not().isEmpty(),
         check("paymentCard", "Necesita una tarjeta de pago").not().isEmpty(),
         check("deliverAddress", "Necesita una dirección de envio").not().isEmpty(),
@@ -40,6 +41,19 @@ router.get(
     [
         validarJWT,
         tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validarCampos
+    ],showBill
+
+)
+
+router.get(
+
+    "/ADMIN",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
+        check("userName", "Es obligatorio el nombre de busqueda").not().isEmpty(),
+        check("userName").custom(existUserName),
         validarCampos
     ],showBill
 

@@ -9,7 +9,7 @@ export const makePurchase = async (req, res) => {
 
     const {purchaserNIT, paymentMethod, paymentCard, deliverAddress} = req.body;
 
-    const shoppingCar = await ShoppingCar.findOne({idCliente: req.usuario._id, sellDone: false});
+    const shoppingCar = await ShoppingCar.findOne({idCliente: req.usuario._id});
 
     const products = shoppingCar.prizeProduct;
 
@@ -34,11 +34,7 @@ export const makePurchase = async (req, res) => {
 
     bill.paymentCard = bcryptjs.hashSync(paymentCard, salt);
 
-    const productSave = await ShoppingCar.findOneAndUpdate(
-        { idCliente: req.usuario._id, sellDone: false},
-        {$set: {sellDone: true}},
-        { new: true }
-    )
+    const procutDelete = await ShoppingCar.findOneAndDelete({idCliente: req.usuario._id});
 
     await bill.save();
 
@@ -68,6 +64,33 @@ export const showBill = async (req, res = response) =>{
     res.status(200).json({
 
         msg: `${req.usuario.userName} tus facturas:`,
+        total,
+        bill
+
+    })
+
+}
+
+export const showBillUser = async (req, res = response) =>{
+
+    const {userName} = req.body;
+
+    const {limite, desde} = req.query;
+
+    const query = {purchaserName: userName};
+
+    const [total, bill] = await Promise.all([
+
+        Bill.countDocuments(query),
+        Bill.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
+        
+    ]);
+
+    res.status(200).json({
+
+        msg: `La facturas de ${userName} son:`,
         total,
         bill
 
