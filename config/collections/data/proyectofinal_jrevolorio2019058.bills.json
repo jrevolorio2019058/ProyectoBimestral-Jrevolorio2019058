@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "65ebd301d8b1119ce9a4741a"
+  },
+  "purchaserName": "Braulio Echeverria",
+  "purchaserNIT": "167896452",
+  "sellerName": "Productos Chapines C.A",
+  "sellerNIT": "198763248",
+  "products": [
+    "Q.200 | Balon de Futbol -> 4"
+  ],
+  "subTotal": 200,
+  "total": 242,
+  "paymentMethod": "VISA",
+  "paymentCard": "$2a$10$9zmHWXwwehjuepqBNq7YHOzW1F4UnlI0kBFZ/AZxnGniFoib3i8aG",
+  "sellDate": {
+    "$date": "2024-03-08T21:09:53.000Z"
+  },
+  "deliverAddress": "Zona 11 de Mixco",
+  "__v": 0
+}]

@@ -10,6 +10,12 @@ export const addCar = async(req, res) => {
 
     const product = await Product.findOne({productName: resto.productName});
 
+    const productSave = await Product.findOneAndUpdate(
+        { productName: resto.productName},
+        {$set: {sells: product.sells + 1, stock: product.stock - resto.quantityProducts}},
+        { new: true }
+    )
+
     const cantidadActual = car.quantityProducts + resto.quantityProducts;
 
     const subTotal =  product.price * resto.quantityProducts;

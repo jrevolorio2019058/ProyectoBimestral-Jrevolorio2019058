@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "65ebcbc84bbf38d2e7cb1784"
+  },
+  "namePaymentMethod": "Efectivo",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ebcbc84bbf38d2e7cb1785"
+  },
+  "namePaymentMethod": "American Express",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ebcbc84bbf38d2e7cb1786"
+  },
+  "namePaymentMethod": "VISA",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ebcbc84bbf38d2e7cb1787"
+  },
+  "namePaymentMethod": "Masterd Card",
+  "__v": 0
+}]

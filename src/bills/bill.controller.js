@@ -13,6 +13,8 @@ export const makePurchase = async (req, res) => {
 
     const shoppingCar = await ShoppingCar.findOne({idCliente: req.usuario._id});
 
+    console.log(shoppingCar);
+
     const products = shoppingCar.prizeProduct;
 
     console.log(products);
