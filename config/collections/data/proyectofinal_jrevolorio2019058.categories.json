@@ -14,8 +14,10 @@
   },
   "categoryName": "Deporte",
   "categoryDescription": "Son productos donde encontraras objetos para hacer deportes",
-  "idProduct": [],
-  "categoryState": false,
+  "idProduct": [
+    "65e93c276b0074845022390f"
+  ],
+  "categoryState": true,
   "__v": 0
 },
 {
@@ -24,7 +26,10 @@
   },
   "categoryName": "Cocina/Hogar",
   "categoryDescription": "Objetos o utelncilios para el hogar y cocina.",
-  "idProduct": [],
+  "idProduct": [
+    "65e93be86b00748450223908",
+    "65ebd6049b205f6197b455b0"
+  ],
   "categoryState": true,
   "__v": 0
 }]

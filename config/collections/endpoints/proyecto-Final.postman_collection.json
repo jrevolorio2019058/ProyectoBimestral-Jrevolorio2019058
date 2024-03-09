@@ -121,7 +121,7 @@
 								"header": [
 									{
 										"key": "x-token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDgyNDZlMzIwZGRlOTZjZGQzYjEiLCJpYXQiOjE3MDk5MDYyNDksImV4cCI6MTcwOTkxNzA0OX0.z6tvWHatFwVbhytx4Dw61_2odCfPynY_Iyz33Swdkos",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
 										"type": "text"
 									}
 								],
@@ -172,6 +172,60 @@
 										"proyectoFinal",
 										"v2",
 										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bills",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/bill",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"bill"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "shoppingInProccess",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/shoppingCar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"shoppingCar"
 									]
 								}
 							},
@@ -249,6 +303,84 @@
 										"proyectoFinal",
 										"v2",
 										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ShoppingCar",
+					"item": [
+						{
+							"name": "addCar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\": \"Balon de Futbol\",\r\n    \"quantityProducts\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/shoppingCar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"shoppingCar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "finishPurchase",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"purchaserNIT\": \"167896452\",\r\n    \"paymentMethod\": \"VISA\",\r\n    \"paymentCard\": \"978412358102\",\r\n    \"deliverAddress\": \"Zona 11 de Mixco\"\r\n}\r\n\r\n/*purchaserNIT, paymentMethod, paymentCard, deliverAddress*/",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/bill/finishPurchase",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"bill",
+										"finishPurchase"
 									]
 								}
 							},
@@ -483,13 +615,13 @@
 								"header": [
 									{
 										"key": "x-token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5MDM2NjIsImV4cCI6MTcwOTkxNDQ2Mn0.eA_wdQCIakWkX35i37K5t0DRodTonjLjcVP2njaNpTY",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NTIxMDcsImV4cCI6MTcwOTk2MjkwN30.Lt6y_umrvWsxVNpgN6HMSIKtNW6Yezk4iYkDLL-tiro",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"productName\": \"Cuchillos\",\r\n    \"price\": 50.00,\r\n    \"stock\": 20,\r\n    \"category\": \"Cocina\"\r\n}",
+									"raw": "{\r\n    \"productName\": \"Platos\",\r\n    \"price\": 25.00,\r\n    \"stock\": 0,\r\n    \"category\": \"Cocina/Hogar\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -605,6 +737,46 @@
 										"v2",
 										"product",
 										"65e93c276b0074845022390f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "billByUser",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZDhiNDZlMzIwZGRlOTZjZGQzYjUiLCJpYXQiOjE3MDk5NDYyMTIsImV4cCI6MTcwOTk1NzAxMn0.gf8-NRzcrSATQ4h_oa-NYwOHTltevzapCn2tcNNHRPg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"Braulio Echeverria\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/proyectoFinal/v2/bill/ADMIN",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"proyectoFinal",
+										"v2",
+										"bill",
+										"ADMIN"
 									]
 								}
 							},
