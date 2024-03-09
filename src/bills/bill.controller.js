@@ -4,6 +4,8 @@ import Bill from './bill.model.js';
 
 import bcryptjs from 'bcryptjs';
 
+import { format } from "date-fns";
+
 
 export const makePurchase = async (req, res) => {
 
@@ -17,6 +19,19 @@ export const makePurchase = async (req, res) => {
 
     const total = shoppingCar.total * 1.21;
 
+    const currentDate = new Date();
+
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const seconds = currentDate.getSeconds();
+    const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    const isoDate = `${formattedDate}T${formattedTime}.000Z`;
+
     const bill = new Bill({
 
         purchaserName: req.usuario.userName,
@@ -26,7 +41,8 @@ export const makePurchase = async (req, res) => {
         total,
         paymentMethod,
         paymentCard,
-        deliverAddress
+        deliverAddress,
+        sellDate: isoDate
 
     })
 

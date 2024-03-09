@@ -6,6 +6,8 @@ import Category from '../categories/category.model.js';
 
 import Product from '../products/product.model.js';
 
+import PaymentMethod from '../paymentMethod/paymenthMehod.model.js';
+
 export const existeUsuarioById = async (id = '') => {
 
     const existeUsuario = await User.findOne({ id });
@@ -77,6 +79,19 @@ export const existUserName = async (userName = "") => {
         
         if (!existeProducto) {
             throw new Error(`El producto ${userName} no existe en la base de datos.`);
+        }
+
+    }
+};
+
+export const existPaymentMethod = async (paymentMethod = "") => {
+    
+    if (paymentMethod != "") {
+
+        const existeProducto = await PaymentMethod.findOne({ namePaymentMethod: paymentMethod });
+        
+        if (!existeProducto) {
+            throw new Error(`El metodo de pago ${paymentMethod} no existe en la base de datos.`);
         }
 
     }

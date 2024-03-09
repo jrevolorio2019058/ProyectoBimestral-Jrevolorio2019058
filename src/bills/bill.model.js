@@ -65,7 +65,7 @@ const BillSchema = mongoose.Schema({
 
     sellDate: {
 
-        type: String
+        type: Date
 
     },
 

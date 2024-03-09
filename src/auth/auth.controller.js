@@ -2,6 +2,8 @@ import bcryptjs from 'bcryptjs';
 
 import User from '../user/user.model.js';
 
+import PaymentMethod from '../paymentMethod/paymenthMehod.model.js'
+
 import { generarJWT } from '../helpers/generar-jwt.js';
 
 import Role from '../roles/role.model.js';
@@ -52,6 +54,10 @@ export const login = async (req, res) => {
         role: "ADMIN_ROLE"
     });
 
+    const existeMetodoPago = await PaymentMethod.findOne({
+        namePaymentMethod: "Efectivo"
+    })
+
     if (!existeRole) {
 
         const roleAdmin = new Role({
@@ -68,6 +74,39 @@ export const login = async (req, res) => {
 
         await roleAdmin.save();
         await roleCliente.save();
+    }
+
+    if(!existeMetodoPago){
+
+        const metodoEfectivo = new PaymentMethod({
+
+            namePaymentMethod: "Efectivo"
+
+        });
+
+        const metodoAmericanExpress = new PaymentMethod({
+
+            namePaymentMethod: "American Express"
+
+        });
+
+        const metodoVisa = new PaymentMethod({
+
+            namePaymentMethod: "VISA"
+
+        });
+
+        const metodoMasterdCard = new PaymentMethod({
+
+            namePaymentMethod: "Masterd Card"
+
+        });
+
+        await metodoEfectivo.save();
+        await metodoAmericanExpress.save();
+        await metodoVisa.save();
+        await metodoMasterdCard.save();
+
     }
 
     res.status(200).json({

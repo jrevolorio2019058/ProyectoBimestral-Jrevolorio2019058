@@ -2,8 +2,6 @@ import ShoppingCar from './shoppingCar.model.js';
 
 import Product from '../products/product.model.js';
 
-import PaymentMethod from '../paymentMethod/paymenthMehod.model.js';
-
 export const addCar = async(req, res) => {
 
     const {_id, total, idCliente, sellDone, ...resto} = req.body;
@@ -26,10 +24,6 @@ export const addCar = async(req, res) => {
         },
         { new: true }
     )
-
-    const pay = new PaymentMethod({namePaymentMethod: "Efectivo", namePaymentMethod: "American-Express", namePaymentMethod: "VISA", namePaymentMethod: "Master Card"});
-
-    await pay.save();
 
     res.status(200).json({
         msg: `${req.usuario.userName} haz agregado ${resto.productName} al carrito exitosamente`
