@@ -30,3 +30,28 @@ export const addCar = async(req, res) => {
     });
 
 }
+
+export const showShopping = async (req, res = response) =>{
+
+    const {limite, desde} = req.query;
+
+    const query = {idCliente: req.usuario._id, sellDone: true};
+
+    const [total, shoppingCar] = await Promise.all([
+
+        ShoppingCar.countDocuments(query),
+        ShoppingCar.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
+        
+    ]);
+
+    res.status(200).json({
+
+        msg: `${req.usuario.userName} tus compras:`,
+        total,
+        shoppingCar
+
+    })
+
+}

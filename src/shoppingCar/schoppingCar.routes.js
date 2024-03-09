@@ -7,7 +7,8 @@ import { validarCampos, existenciaCarrito } from '../middlewares/validar-campos.
 import {existProductName} from '../helpers/db-validator.js';
 
 import{
-    addCar
+    addCar,
+    showShopping
 } from './shoppingCar.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -28,6 +29,17 @@ router.post(
         existenciaCarrito,
         validarCampos
     ],addCar
+
+)
+
+router.get(
+
+    "/",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validarCampos
+    ],showShopping
 
 )
 

@@ -49,3 +49,28 @@ export const makePurchase = async (req, res) => {
     });
 
 }
+
+export const showBill = async (req, res = response) =>{
+
+    const {limite, desde} = req.query;
+
+    const query = {purchaserName: req.usuario.userName};
+
+    const [total, bill] = await Promise.all([
+
+        Bill.countDocuments(query),
+        Bill.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
+        
+    ]);
+
+    res.status(200).json({
+
+        msg: `${req.usuario.userName} tus facturas:`,
+        total,
+        bill
+
+    })
+
+}

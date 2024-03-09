@@ -9,7 +9,8 @@ import { validarCampos } from '../middlewares/validar-campos.js';
 import {existProductName} from '../helpers/db-validator.js';
 
 import{
-    makePurchase
+    makePurchase,
+    showBill
 } from './bill.controller.js';
 
 import { validarJWT } from '../middlewares/validar-jwt.js';
@@ -30,6 +31,17 @@ router.post(
         check("deliverAddress", "Necesita una dirección de envio").not().isEmpty(),
         validarCampos
     ],makePurchase
+
+)
+
+router.get(
+
+    "/",
+    [
+        validarJWT,
+        tieneRole('ADMIN_ROLE', 'CLIENT_ROLE'),
+        validarCampos
+    ],showBill
 
 )
 
